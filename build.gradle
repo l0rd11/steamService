@@ -1,0 +1,53 @@
+buildscript {
+	ext {
+		springBootVersion = '1.2.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: 'idea'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+
+configurations.all {
+	exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+
+dependencies {
+
+	compile("org.springframework.boot:spring-boot-starter-web") {
+		exclude module: 'spring-boot-starter-tomcat'
+	}
+	compile("org.springframework.boot:spring-boot-starter-undertow")
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	compile("org.springframework.cloud:spring-cloud-starter-hystrix:1.0.0.RELEASE")
+	compile("org.springframework.cloud:spring-cloud-starter-eureka:1.0.0.RELEASE")
+	compile("org.springframework.cloud:spring-cloud-starter-bus-amqp:1.0.0.RELEASE")
+	compile("org.springframework.cloud:spring-cloud-netflix-hystrix-amqp:1.0.0.RELEASE")
+
+	compile( 'com.github.go-ive:steam-api:5.0')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+repositories {
+	mavenLocal()
+	mavenCentral()
+	maven {
+		url 'http://maven.springframework.org/release'
+	}
+}
+
+//dependencyManagement {
+//	imports {
+//		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//	}
+//}

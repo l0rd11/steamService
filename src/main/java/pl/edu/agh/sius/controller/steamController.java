@@ -33,7 +33,7 @@ public class steamController {
             return util.createBadResponse(response);
     }
 
-    @RequestMapping(value = "/getApps/", method = RequestMethod.GET)
+    @RequestMapping(value = "/getApps", method = RequestMethod.GET)
     public ResponseEntity<Map<Integer, String>> getApps() {
         return util.createOkResponse(steamService.getAppList());
     }

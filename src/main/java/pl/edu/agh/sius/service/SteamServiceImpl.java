@@ -17,8 +17,9 @@ public class SteamServiceImpl implements SteamService {
 
     SteamApi steamApi = new SteamApi("US");
 
-    @HystrixCommand(fallbackMethod = "getInfoAboutGameDefault")
+
     @Override
+    @HystrixCommand(fallbackMethod = "getInfoAboutGameDefault")
     public SteamApp getInfoAboutGame(String name) {
         try {
             int appId = Integer.parseInt(name);
@@ -37,6 +38,7 @@ public class SteamServiceImpl implements SteamService {
 
 
     @Override
+    @HystrixCommand(fallbackMethod = "getDefaultAppList")
     public Map<Integer, String> getAppList() {
         try {
             return steamApi.listApps();
@@ -45,7 +47,11 @@ public class SteamServiceImpl implements SteamService {
             return null;
         }
     }
-
+    public Map<Integer, String> getDefaultAppList() {
+        HashMap<Integer, String> map = new HashMap<>();
+        map.put(1,"Sorry something went wrong ");
+        return map;
+    }
 
     public SteamApp getInfoAboutGameDefault(String name) {
 

@@ -6,7 +6,10 @@ steamService is a steam microservice for sius course.
 ```
 $ gradlew bootRun
 ```
-first start eureka service and configSerfvice and rabbitMq with folowing config first time starting:
+#### first start
+##### eureka service 
+##### configSerfvice
+##### rabbitMq with folowing config first time starting:
 ```
 sudo rabbitmq-server
 sudo rabbitmq-plugins enable rabbitmq_management
@@ -19,3 +22,11 @@ normal start
 sudo rabbitmq-server
 ```
 Server will be available at ranadom port check it in eureka site 
+
+### Endpoints
+#### get
+get information about app
+/steam/getInfo/{appID/appName}
+
+get all posible apps
+/steam/getApps
